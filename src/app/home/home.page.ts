@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,13 @@ export class HomePage {
              'Concentrate and ask again.', "Don't count on it.", 'My reply is no.',
              'My sources say no.', 'Outlook not so good.', 'Very doubtful.']
 
-  constructor(private toastCtrl: ToastController) {}
+  constructor(private toastCtrl: ToastController,
+             private vibration: Vibration) {}
 
   giveAnswer() {
     this.cssClass = "animated shake";
     let answer = this.answers[Math.floor(Math.random() * this.answers.length)];
+    this.vibration.vibrate(1000);
     // this.presentToast(answer);
 
     var temp = this;
